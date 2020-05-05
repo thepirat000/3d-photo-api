@@ -15,6 +15,8 @@ choco install cuda --ignore-checksums -y --no-progress
 
 refreshenv
 
+mkdir C:\GIT
+
 # Clone project
 & 'C:\Program Files\Git\bin\git.exe' clone https://github.com/vt-vl-lab/3d-photo-inpainting.git
 cd 3d-photo-inpainting
