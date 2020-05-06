@@ -20,7 +20,7 @@ function setupDropFilesBox() {
         paramName: "file",
         maxFilesize: 12, // MB
         maxFiles: 20,
-        timeout: 600000,
+        timeout: 3600000,
         clickable: true,
         acceptedFiles: "image/*",
         uploadMultiple: true,
