@@ -3,6 +3,9 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>_3d_photo_api</RootNamespace>
+
+    <AspNetCoreModuleName>AspNetCoreModuleV2</AspNetCoreModuleName>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
   </PropertyGroup>
 
   <ItemGroup>
