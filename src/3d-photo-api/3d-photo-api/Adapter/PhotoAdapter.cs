@@ -94,7 +94,7 @@ namespace _3d_photo_api.Adapter
                     sw.WriteLine("conda deactivate");
                 }
             }
-            WaitOrKill(process, 15, command);
+            WaitOrKill(process, 30, command);
             status.OutputFolder = inputFolder;
             status.ExitCode = process.ExitCode;
             return status;
