@@ -47,7 +47,7 @@ namespace photo_api.Controllers
             }
 
             var traceId = this.HttpContext.TraceIdentifier.Split(':')[0];
-            var result = Process(traceId);
+            var result = await Process(traceId);
 
             return Ok(result);
         }
