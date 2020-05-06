@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Text.Json;
+using Audit.WebApi;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,6 +11,7 @@ namespace photo_api.Controllers
     [ApiController]
     [Route("[controller]")]
     [EnableCors]
+    [AuditApi]
     public class TestController : ControllerBase
     {
         [HttpGet]

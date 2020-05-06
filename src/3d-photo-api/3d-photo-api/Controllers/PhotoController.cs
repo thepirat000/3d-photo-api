@@ -5,6 +5,7 @@ using System.IO.Compression;
 using System.Linq;
 using System.Threading.Tasks;
 using _3d_photo_api.Adapter;
+using Audit.WebApi;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -17,6 +18,7 @@ namespace photo_api.Controllers
     [Route("[controller]")]
     [RequestFormLimits(ValueCountLimit = 5000)]
     [EnableCors]
+    [AuditApi]
     public class PhotoController : ControllerBase
     {
         private static long Max_Upload_Size = long.Parse(Startup.Configuration["AppSettings:MaxUploadSize"]);

@@ -1,4 +1,4 @@
-const apiUrl = "https://localhost:44391/photo/p";
+const apiUrl = "https://photo-3d.eastus.cloudapp.azure.com/photo/p";
 let dzError = false;
 let dropzone;
 

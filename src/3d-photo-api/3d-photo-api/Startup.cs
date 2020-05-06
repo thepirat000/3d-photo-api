@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Audit.Core;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -35,6 +37,7 @@ namespace photo_api
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            ConfigureAuditNet();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -56,8 +59,35 @@ namespace photo_api
 
         public static void EphemeralLog(string text, bool important)
         {
-            // TODO: 
-            Console.WriteLine($"{DateTime.Now:yyyy-MM-dd HH:mm:ss}: " + text);
+            if (string.IsNullOrWhiteSpace(text))
+            {
+                return;
+            }
+            Console.WriteLine(text);
+            Audit.Core.AuditScope.CreateAndSave("Ephemeral", new { Status = text });
+        }
+
+        private void ConfigureAuditNet()
+        {
+            Audit.Core.Configuration.Setup()
+                .UseUdp(_ => _
+                    .RemoteAddress("127.0.0.1")
+                    .RemotePort(2223)
+                    .CustomSerializer(ev =>
+                    {
+                        if (ev.EventType == "Ephemeral")
+                        {
+                            return Encoding.UTF8.GetBytes(ev.CustomFields["Status"] as string);
+                        }
+                        else
+                        {
+                            var action = (ev as Audit.WebApi.AuditEventWebApi)?.Action;
+                            var msg = $"Action: {action.ControllerName}/{action.ActionName}{new Uri(action.RequestUrl).Query} - Response: {action.ResponseStatusCode} {action.ResponseStatus}: {System.Text.Json.JsonSerializer.Serialize(action.ResponseBody?.Value)}. Event: {action.ToJson()}";
+                            return Encoding.UTF8.GetBytes(msg);
+                        }
+                    }));
+
+            EphemeralLog($"Spleeter started at {DateTime.Now}", true);
         }
     }
 }
