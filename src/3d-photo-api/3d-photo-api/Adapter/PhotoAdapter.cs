@@ -26,7 +26,7 @@ namespace _3d_photo_api.Adapter
             Startup.EphemeralLog($"[3d-photo-api] {type}: {line}", false);
             if (type == "stderr")
             {
-                if (line.Contains("it/s") && line.Trim().EndsWith("]"))
+                if ((line.Contains("it/s") || line.Contains("s/it")) && line.Trim().EndsWith("]"))
                 {
                     // not an error, process wrongly logging success status to stderr
                 }
