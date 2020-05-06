@@ -61,6 +61,10 @@ namespace photo_api.Controllers
             {
                 return BadRequest();
             }
+            if (traceId != ShellHelper.SanitizeFilename(traceId))
+            {
+                return BadRequest("Don't try to cheat me");
+            }
             var file = $"{Root_Folder}/{traceId}/output/videos.zip";
             if (System.IO.File.Exists(file))
             {
