@@ -74,10 +74,7 @@ namespace _3d_photo_api.Adapter
 
                     // TODO: Remove this
                     /* DEBUG */
-                    sw.WriteLine("python");
-                    sw.WriteLine("import vispy");
-                    sw.WriteLine("vispy.sys_info()");
-                    sw.WriteLine("quit()");
+                    sw.WriteLine(@"python -c ""import vispy; print(vispy.sys_info()); """);
                     /* /DEBUG */
 
                     sw.WriteLine(@$"CD ""{Inpainting_AppDir}""");
