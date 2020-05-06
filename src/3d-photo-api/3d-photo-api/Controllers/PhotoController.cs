@@ -96,8 +96,8 @@ namespace photo_api.Controllers
             var settings = new Dictionary<string, object>()
             {
                 { "src_folder", inputImagesFolder },
-                { "video_folder", outputVideoFolder },
-                { "offscreen_rendering", "True" }
+                { "video_folder", outputVideoFolder }
+                //{ "offscreen_rendering", "True" }
             };
             var configFolder = $"{Root_Folder}/{traceId}/config";
             var configFile = $"{configFolder}/argument.yml";

@@ -5,7 +5,8 @@
     <RootNamespace>_3d_photo_api</RootNamespace>
 
     <AspNetCoreModuleName>AspNetCoreModuleV2</AspNetCoreModuleName>
-    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
+
   </PropertyGroup>
 
   <ItemGroup>
