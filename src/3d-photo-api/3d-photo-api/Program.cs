@@ -26,7 +26,7 @@ namespace photo_api
                         .UseKestrel(options =>
                         {
                             // listen for HTTP
-                            options.Listen(IPAddress.Loopback, 8080);
+                            options.Listen(IPAddress.Any, 8080);
 
                             // retrieve certificate from store
                             using (var store = new X509Store(StoreName.My, StoreLocation.LocalMachine))
@@ -38,7 +38,7 @@ namespace photo_api
                                     var certificate = certs[0];
 
                                     // listen for HTTPS
-                                    options.Listen(IPAddress.Loopback, 443, listenOptions =>
+                                    options.Listen(IPAddress.Any, 443, listenOptions =>
                                     {
                                         listenOptions.UseHttps(certificate);
                                     });
