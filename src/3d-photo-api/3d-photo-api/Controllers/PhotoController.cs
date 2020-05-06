@@ -18,7 +18,7 @@ namespace photo_api.Controllers
     [Route("[controller]")]
     [RequestFormLimits(ValueCountLimit = 5000)]
     [EnableCors]
-    [AuditApi]
+    [AuditApi(IncludeHeaders = true, IncludeResponseBody = true, IncludeResponseHeaders = true)]
     public class PhotoController : ControllerBase
     {
         private static long Max_Upload_Size = long.Parse(Startup.Configuration["AppSettings:MaxUploadSize"]);
@@ -113,7 +113,7 @@ namespace photo_api.Controllers
 
             if (result.ErrorCount > 0)
             {
-                throw new Exception(string.Join(' ', result.Errors));
+                throw new Exception(string.Join(' +++ ', result.Errors));
             }
 
             // Make zip
@@ -123,6 +123,7 @@ namespace photo_api.Controllers
             // Delete temp folders
             Directory.Delete(inputImagesFolder, true);
             Directory.Delete(configFolder, true);
+            Directory.Delete(outputVideoFolder, true);
 
             result.TraceId = traceId;
 

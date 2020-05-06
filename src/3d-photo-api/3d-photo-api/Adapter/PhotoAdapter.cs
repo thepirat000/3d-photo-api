@@ -21,9 +21,7 @@ namespace _3d_photo_api.Adapter
             {
                 return;
             }
-
-
-            Startup.EphemeralLog($"[3d-photo-api] {type}: {line}", false);
+            Startup.EphemeralLog($"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] {type}: {line}", false);
             if (type == "stderr")
             {
                 if ((line.Contains("it/s") || line.Contains("s/it")) && line.Trim().EndsWith("]"))
