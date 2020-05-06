@@ -9,6 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{808C2E0D-FBF0-4E63-A8FC-67A81D1A4F9C}"
 	ProjectSection(SolutionItems) = preProject
+		..\..\docs\3dphoto.css = ..\..\docs\3dphoto.css
 		..\..\docs\3dphoto.js = ..\..\docs\3dphoto.js
 		..\..\docs\index.html = ..\..\docs\index.html
 	EndProjectSection

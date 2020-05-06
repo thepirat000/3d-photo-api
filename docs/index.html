@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:fb="http://ogp.me/ns/fb#">
 <head>
@@ -10,7 +10,7 @@
     <meta name="robots" content="noindex, nofollow">
     <meta name="googlebot" content="noindex, nofollow">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
+
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
     <script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
@@ -22,30 +22,40 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="3dphoto.css">
+
 </head>
 <body>
 
-<div>
-	<div class="dropzone-container">	
-		<form id="uploader" class="dropzone-drop-area">
-			<input type="hidden" name="format" id="file-format" />
-		</form>
-		
-		<div>
-			<button id="btn-go">Go</button>
-		</div>
-		
-	</div>
-</div>
+    <div>
+        <div class="dropzone-container">
+            <form id="uploader" class="dropzone-drop-area">
+                <input type="hidden" name="format" id="file-format" />
+            </form>
 
-<footer class="border-top footer text-muted">
-	<div class="container">
-		<p>&copy; 2020 ThePirat - <a href="https://github.com/thepirat000/3d-photo">Source code</a> - Powered by <a href="https://shihmengli.github.io/3D-Photo-Inpainting/">3D Photo Inpainting</a></p>
-		<span style="margin: 0 auto; padding: 10px 0px 0px 0px; vertical-align: middle;"><a href="https://paypal.me/thepirat000"><img src="https://img.shields.io/badge/Sponsor-critical" /></a></span>
-	</div>
-</footer>
+            <div>
+                <button id="btn-go">Go</button>
+            </div>
 
-<script type="text/javascript" src="3dphoto.js"></script>
+        </div>
+    </div>
+
+    <div id="wait-dialog" class="modal">
+        <div class="loader" id="spinner" style="display:none;"></div>
+        <div>
+            Processing. Please wait a few minutes...
+        </div>
+        <button id="btn-close-wait">Close</button>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            <p>&copy; 2020 ThePirat - <a href="https://github.com/thepirat000/3d-photo">Source code</a> - Powered by <a href="https://shihmengli.github.io/3D-Photo-Inpainting/">3D Photo Inpainting</a></p>
+            <span style="margin: 0 auto; padding: 10px 0px 0px 0px; vertical-align: middle;"><a href="https://paypal.me/thepirat000"><img src="https://img.shields.io/badge/Sponsor-critical" /></a></span>
+        </div>
+    </footer>
+
+    <script type="text/javascript" src="3dphoto.js"></script>
 
 </body>
 

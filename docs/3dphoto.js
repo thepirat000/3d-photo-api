@@ -6,7 +6,10 @@ $(document).ready(function () {
 	setupDropFilesBox();
 	$("#btn-go").click(e => {
 		Go();
-	});
+    });
+    $("#btn-close-wait").on("click", function () {
+        stopWait();
+    });
 });
 
 function setupDropFilesBox() {
@@ -48,12 +51,30 @@ function onFileUploadCompleted(f, response) {
     } else {
         // download file
         console.log("Successful process: " + JSON.stringify(response));
-        let downloadUrl = apiUrl + "/d?t=" + response.TraceId;
+        let downloadUrl = apiUrl + "/d?t=" + response.traceId;
         window.open(downloadUrl);
     }
 }
 
+function startWait() {
+    $("#spinner").show();
+    $("div.dz-preview").css("z-index", "0");
+    $("#wait-dialog").modal({
+        escapeClose: false,
+        clickClose: false,
+        showClose: false,
+        fadeDuration: 100
+    });
+
+    //$("#div-main").find("*").addClass('wait');
+}
+
 function stopWait() {
+    $("div.dz-preview").css("z-index", "auto");
+    $("#spinner").hide();
+    //$("#div-main").find("*").removeClass('wait');
+    $.modal.close();
+    $("#wait-dialog").hide();
 }
 
 function Go() {
@@ -62,8 +83,9 @@ function Go() {
 		return;
 	}
 	
-	$("#file-format").val("parameter example");
-	
+    $("#file-format").val("parameter example");
+
+    startWait();
     dropzone.processQueue(); 
 }
 
