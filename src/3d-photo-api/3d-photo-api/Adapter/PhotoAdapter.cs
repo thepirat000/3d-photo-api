@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace _3d_photo_api.Adapter
 {
@@ -70,6 +71,15 @@ namespace _3d_photo_api.Adapter
                 if (sw.BaseStream.CanWrite)
                 {
                     sw.WriteLine(Anaconda_Activate_Script);
+
+                    // TODO: Remove this
+                    /* DEBUG */
+                    sw.WriteLine("python");
+                    sw.WriteLine("import vispy");
+                    sw.WriteLine("vispy.sys_info()");
+                    sw.WriteLine("quit()");
+                    /* /DEBUG */
+
                     sw.WriteLine(@$"CD ""{Inpainting_AppDir}""");
                     sw.WriteLine(command);
                     sw.WriteLine("conda deactivate");
