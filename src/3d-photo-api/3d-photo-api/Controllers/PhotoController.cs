@@ -81,6 +81,11 @@ namespace photo_api.Controllers
             foreach (var file in Request.Form.Files)
             {
                 var fileName = ShellHelper.SanitizeFilename(file.FileName);
+                if (string.IsNullOrEmpty(Path.GetExtension(file.FileName)))
+                {
+                    // Assume is a jpg
+                    fileName += ".jpg";
+                }
                 var filePath = $"{inputImagesFolder}/{fileName}";
                 if (!System.IO.File.Exists(filePath))
                 {
