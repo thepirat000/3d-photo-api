@@ -58,4 +58,7 @@ $file = $PSScriptRoot + '\dotnet-sdk-3.1.103-win-x64.exe';
 Start-BitsTransfer -Source $url -Destination $file
 & $file /install /passive
 
+cd C:\GIT
+git clone https://github.com/thepirat000/3d-photo-api.git
+cd 3d-photo-api
 
