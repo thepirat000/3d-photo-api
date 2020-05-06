@@ -75,14 +75,12 @@ namespace _3d_photo_api.Adapter
                     // TODO: Remove this
                     /* DEBUG */
                     //sw.WriteLine(@"python -c ""import vispy; print(vispy.sys_info()); """);
+                    //sw.WriteLine(@"python -c ""import time; print('waiting 10 secs'); time.sleep(10); print('done');""");
                     /* /DEBUG */
 
                     sw.WriteLine(@$"CD ""{Inpainting_AppDir}""");
                     sw.WriteLine(command);
-
-                    sw.WriteLine(@"python -c ""import time; print('waiting 10 secs'); time.sleep(10); print('done');""");
-
-                    //sw.WriteLine("conda deactivate");
+                    sw.WriteLine("conda deactivate");
                 }
             }
             WaitOrKill(process, 15, command);

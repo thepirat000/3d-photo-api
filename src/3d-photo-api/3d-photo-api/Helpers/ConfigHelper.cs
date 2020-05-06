@@ -27,14 +27,7 @@ namespace photo_api.Helpers
                 .WithEventEmitter(next => new FlowStyleIntegerSequences(next))
                 .Build();
             string newConfigYaml = null;
-            try
-            {
-                newConfigYaml = serializer.Serialize(config);
-            }
-            catch (System.Exception ex)
-            {
-                var a = ex;
-            }
+            newConfigYaml = serializer.Serialize(config);
             Directory.CreateDirectory(Path.GetDirectoryName(outputFile));
             File.WriteAllText(outputFile, newConfigYaml);
 
