@@ -11,6 +11,8 @@ namespace _3d_photo_api.Adapter
     public class PhotoAdapter
     {
         private static string Anaconda_Activate_Script = Startup.Configuration["AppSettings:AnacondaScript"];
+        private static string Inpainting_AppDir = Startup.Configuration["AppSettings:InpaintingAppDir"];
+        
 
         private static void ProcessOutputLine(string type, string line, PhotoProcessResult status)
         {
@@ -68,6 +70,7 @@ namespace _3d_photo_api.Adapter
                 if (sw.BaseStream.CanWrite)
                 {
                     sw.WriteLine(Anaconda_Activate_Script);
+                    sw.WriteLine(@$"CD ""{Inpainting_AppDir}""");
                     sw.WriteLine(command);
                     sw.WriteLine("conda deactivate");
                 }
