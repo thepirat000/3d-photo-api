@@ -68,7 +68,7 @@ namespace photo_api.Controllers
             var file = $"{Root_Folder}/{traceId}/output/videos.zip";
             if (System.IO.File.Exists(file))
             {
-                return PhysicalFile(file, "application/zip", file);
+                return PhysicalFile(file, "application/zip", $"{traceId}-videos.zip");
             }
             return Problem($"File {file} not found");
         }
