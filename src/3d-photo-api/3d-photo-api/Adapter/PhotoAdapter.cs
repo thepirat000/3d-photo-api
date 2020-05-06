@@ -17,11 +17,24 @@ namespace _3d_photo_api.Adapter
 
         private static void ProcessOutputLine(string type, string line, PhotoProcessResult status)
         {
-            Startup.EphemeralLog($"[spleeter] {type}: {line}", false);
+            if (string.IsNullOrWhiteSpace(line))
+            {
+                return;
+            }
+
+
+            Startup.EphemeralLog($"[3d-photo-api] {type}: {line}", false);
             if (type == "stderr")
             {
-                status.ErrorCount++;
-                status.Errors.Add(line);
+                if (line.Contains("it/s") && line.Trim().EndsWith("]"))
+                {
+                    // not an error, process wrongly logging success status to stderr
+                }
+                else
+                {
+                    status.ErrorCount++;
+                    status.Errors.Add(line);
+                }
             }
         }
 

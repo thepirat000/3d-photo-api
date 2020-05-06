@@ -88,7 +88,7 @@ namespace photo_api
                         }
                     }));
 
-            EphemeralLog($"Spleeter started at {DateTime.Now}", true);
+            EphemeralLog($"3d-photo-api started at {DateTime.Now}", true);
         }
     }
 }
