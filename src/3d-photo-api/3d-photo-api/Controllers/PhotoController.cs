@@ -99,7 +99,7 @@ namespace photo_api.Controllers
                 { "video_folder", outputVideoFolder }
             };
             var configFolder = $"{Root_Folder}/{traceId}/config";
-            var configFile = $"{configFolder}/argument.yaml";
+            var configFile = $"{configFolder}/argument.yml";
             ConfigHelper.WriteConfig(configFile, settings);
 
             // Execute
