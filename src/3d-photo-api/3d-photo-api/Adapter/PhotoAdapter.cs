@@ -60,7 +60,7 @@ namespace _3d_photo_api.Adapter
             process.BeginOutputReadLine();
             process.BeginErrorReadLine();
 
-            var command = @$"python main.py";
+            var command = @$"python -m main";
             if (!string.IsNullOrEmpty(configFilename))
             {
                 command += " --config " + configFilename;
@@ -79,7 +79,7 @@ namespace _3d_photo_api.Adapter
 
                     sw.WriteLine(@$"CD ""{Inpainting_AppDir}""");
                     sw.WriteLine(command);
-                    sw.WriteLine("conda deactivate");
+                    //sw.WriteLine("conda deactivate");
                 }
             }
 
