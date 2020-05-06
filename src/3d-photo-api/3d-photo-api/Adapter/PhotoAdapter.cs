@@ -104,6 +104,7 @@ namespace _3d_photo_api.Adapter
                     try { process.Kill(); } finally { }
                 }
             }
+            Startup.EphemeralLog($"--- Process Exited ---", true);
             process.CancelOutputRead();
             process.CancelErrorRead();
         }
