@@ -1,5 +1,7 @@
 using System;
 using System.Linq;
+using System.Net;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -20,7 +22,31 @@ namespace photo_api
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder
+                        .UseKestrel(options =>
+                        {
+                            // listen for HTTP
+                            options.Listen(IPAddress.Loopback, 8080);
+
+                            // retrieve certificate from store
+                            using (var store = new X509Store(StoreName.My, StoreLocation.LocalMachine))
+                            {
+                                store.Open(OpenFlags.ReadOnly);
+                                var certs = store.Certificates.Find(X509FindType.FindBySubjectName, "photo-3d.eastus.cloudapp.azure.com", false);
+                                if (certs.Count > 0)
+                                {
+                                    var certificate = certs[0];
+
+                                    // listen for HTTPS
+                                    options.Listen(IPAddress.Loopback, 443, listenOptions =>
+                                    {
+                                        listenOptions.UseHttps(certificate);
+                                    });
+                                }
+                            }
+                        })
+                        .UseStartup<Startup>();
+
                 });
     }
 }

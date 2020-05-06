@@ -55,6 +55,7 @@ namespace photo_api
             {
                 endpoints.MapControllers();
             });
+
         }
 
         public static void EphemeralLog(string text, bool important)
