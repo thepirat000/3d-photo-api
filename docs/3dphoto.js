@@ -52,7 +52,7 @@ function onFileUploadCompleted(f, response) {
         // download file
         console.log("Successful process: " + JSON.stringify(response));
         let downloadUrl = apiUrl + "/d?t=" + response.traceId;
-        $("<li>").html(downloadUrl).appendTo("#download-links-list");
+        $("<li>").html("<a href='" + downloadUrl + "'>" + downloadUrl + "</a>").appendTo("#download-links-list");
         $("#download-links-div").show();
         window.open(downloadUrl);
     }
