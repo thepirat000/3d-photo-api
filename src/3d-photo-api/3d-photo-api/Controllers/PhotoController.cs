@@ -113,7 +113,7 @@ namespace photo_api.Controllers
 
             if (result.ErrorCount > 0)
             {
-                throw new Exception(string.Join(' +++ ', result.Errors));
+                throw new Exception(string.Join(" +++ ", result.Errors));
             }
 
             // Make zip

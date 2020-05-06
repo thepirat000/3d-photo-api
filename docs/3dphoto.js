@@ -1,4 +1,4 @@
-const apiUrl = "https://photo-3d.eastus.cloudapp.azure.com/photo/p";
+const apiUrl = "https://photo-3d.eastus.cloudapp.azure.com/photo";
 let dzError = false;
 let dropzone;
 
@@ -13,7 +13,7 @@ function setupDropFilesBox() {
     $("#uploader").addClass('dropzone');
 	
     dropzone = new Dropzone("#uploader", {
-        url: apiUrl,
+        url: apiUrl + '/p',
         paramName: "file",
         maxFilesize: 12, // MB
         maxFiles: 20,
@@ -24,15 +24,10 @@ function setupDropFilesBox() {
         createImageThumbnails: true,
         parallelUploads: 5,
         method: "post",
-        
         dictDefaultMessage: "Drop images here or Click to upload",
         successmultiple: onFileUploadCompleted,
-		
 		autoProcessQueue: false,
 		addRemoveLinks: true,
-        
- 
-		
         errormultiple: function (f, errorMessage) {
             if (!dzError) {
                 dzError = true;
@@ -52,8 +47,8 @@ function onFileUploadCompleted(f, response) {
         alert(response.error);
     } else {
         // download file
-        console.log("Successful split: " + JSON.stringify(response));
-        let downloadUrl = split_mp3_api + "/d?fn=" + encodeURIComponent(response.fileId);
+        console.log("Successful process: " + JSON.stringify(response));
+        let downloadUrl = apiUrl + "/d?t=" + response.TraceId;
         window.open(downloadUrl);
     }
 }
