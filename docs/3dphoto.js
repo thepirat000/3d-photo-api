@@ -1,8 +1,12 @@
-const apiUrl = "https://photo-3d.eastus.cloudapp.azure.com/photo";
+const baseUrl = "https://photo-3d.eastus.cloudapp.azure.com";
+const apiUrl = baseUrl + "/photo";
+const testUrl = baseUrl + "/test";
+
 let dzError = false;
 let dropzone;
 
 $(document).ready(function () {
+    TestConnectivity();
 	setupDropFilesBox();
 	$("#btn-go").click(e => {
 		Go();
@@ -92,3 +96,28 @@ function Go() {
 }
 
 
+function TestConnectivity() {
+    $("#server-down-text").html('');
+    var opts = {
+        method: 'GET',
+        headers: {}
+    };
+    fetchTimeout(testUrl, opts, 4000)
+        .then(function (response) {
+            $("#server-down-div").toggle(!response.ok);
+        })
+        .catch(function (error) {
+            $("#server-down-div").show();
+            $("#server-down-text").html(error);
+        });
+
+}
+
+function fetchTimeout(url, options, timeout) {
+    return Promise.race([
+        fetch(url, options),
+        new Promise((_, reject) =>
+            setTimeout(() => reject(new Error('timeout')), timeout)
+        )
+    ]);
+}
